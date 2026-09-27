@@ -1,0 +1,2207 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="theme-color" content="#0a0712">
+
+<title>اسپرت ایران ۴۶ | کارت دیجیتال</title>
+
+<style>
+/* ================= BASE ================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    background:#08060f;
+    color:white;
+    font-family:
+        Vazirmatn,
+        Tahoma,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+    overflow-x:hidden;
+}
+
+button,
+a{
+    font-family:inherit;
+}
+
+/* ================= BACKGROUND ================= */
+
+#universe{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    z-index:0;
+
+    background:
+        radial-gradient(
+            circle at 50% 10%,
+            rgba(168,85,247,.28),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 100% 55%,
+            rgba(236,72,153,.20),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 0 82%,
+            rgba(34,211,238,.16),
+            transparent 32%
+        ),
+        linear-gradient(
+            145deg,
+            #030207,
+            #0a0612 52%,
+            #020107
+        );
+}
+
+.orb{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(80px);
+    pointer-events:none;
+}
+
+.orb1{
+    width:320px;
+    height:320px;
+    background:#7c3aed;
+    top:-120px;
+    left:-100px;
+    animation:orb1 12s infinite alternate ease-in-out;
+}
+
+.orb2{
+    width:280px;
+    height:280px;
+    background:#ec4899;
+    right:-120px;
+    top:35%;
+    animation:orb2 15s infinite alternate ease-in-out;
+}
+
+.orb3{
+    width:350px;
+    height:350px;
+    background:#0891b2;
+    bottom:-220px;
+    left:20%;
+    animation:orb3 18s infinite alternate ease-in-out;
+}
+
+@keyframes orb1{
+    to{
+        transform:translate(180px,230px) scale(1.35);
+    }
+}
+
+@keyframes orb2{
+    to{
+        transform:translate(-170px,120px) scale(1.4);
+    }
+}
+
+@keyframes orb3{
+    to{
+        transform:translate(100px,-150px) scale(1.4);
+    }
+}
+
+/* ================= GRID ================= */
+
+.grid{
+    position:absolute;
+    inset:-20%;
+    opacity:.12;
+
+    background-image:
+        linear-gradient(
+            rgba(168,85,247,.32) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(34,211,238,.28) 1px,
+            transparent 1px
+        );
+
+    background-size:45px 45px;
+
+    transform:
+        perspective(450px)
+        rotateX(60deg)
+        scale(1.4);
+
+    transform-origin:center bottom;
+
+    animation:gridMove 10s linear infinite;
+}
+
+@keyframes gridMove{
+    to{
+        background-position:0 45px,45px 0;
+    }
+}
+
+/* ================= STARS ================= */
+
+#stars{
+    position:absolute;
+    inset:0;
+}
+
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    border-radius:50%;
+    background:white;
+
+    box-shadow:
+        0 0 7px #f0abfc,
+        0 0 16px #22d3ee;
+
+    animation:starFall linear infinite;
+}
+
+@keyframes starFall{
+
+    from{
+        transform:translateY(110vh) scale(.2);
+        opacity:0;
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    50%{
+        transform:translateY(50vh) scale(1.5);
+    }
+
+    to{
+        transform:translateY(-10vh) scale(.2);
+        opacity:0;
+    }
+}
+
+/* ================= METEORS ================= */
+
+.meteor{
+    position:absolute;
+    width:120px;
+    height:2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #22d3ee,
+            #f0abfc,
+            white
+        );
+
+    box-shadow:
+        0 0 10px #22d3ee,
+        0 0 25px #a855f7;
+
+    transform:rotate(-35deg);
+
+    opacity:0;
+
+    animation:meteor 8s linear infinite;
+}
+
+.meteor1{
+    top:10%;
+    left:80%;
+    animation-delay:2s;
+}
+
+.meteor2{
+    top:35%;
+    left:30%;
+    animation-delay:6s;
+}
+
+.meteor3{
+    top:60%;
+    left:90%;
+    animation-delay:10s;
+}
+
+@keyframes meteor{
+
+    0%,75%{
+        opacity:0;
+        transform:
+            translate(0,0)
+            rotate(-35deg);
+    }
+
+    78%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0;
+        transform:
+            translate(-500px,500px)
+            rotate(-35deg);
+    }
+}
+
+/* ================= SCANLINES ================= */
+
+.scanlines{
+    position:fixed;
+    inset:0;
+    z-index:3;
+    pointer-events:none;
+    opacity:.07;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            transparent 3px,
+            rgba(0,180,255,.25) 4px
+        );
+}
+
+/* ================= MAIN ================= */
+
+.container{
+    width:100%;
+    max-width:480px;
+    margin:auto;
+    padding:42px 14px 45px;
+    position:relative;
+    z-index:10;
+    text-align:center;
+    transition:transform .2s ease;
+}
+
+/* ================= HUD ================= */
+
+.top-hud{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+    font-size:9px;
+    color:#8e82aa;
+    letter-spacing:2px;
+}
+
+.hud-left,
+.hud-right{
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+.online-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#65f3b4;
+
+    box-shadow:
+        0 0 8px #65f3b4,
+        0 0 18px #65f3b4;
+
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    50%{
+        opacity:.35;
+        transform:scale(.7);
+    }
+}
+
+/* ================= PROFILE ================= */
+
+.profile-zone{
+    width:180px;
+    height:180px;
+    margin:0 auto 25px;
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.profile-zone::before{
+    content:"";
+    position:absolute;
+    inset:-12px;
+    border-radius:50%;
+    border:1px solid rgba(34,211,238,.72);
+
+    box-shadow:
+        0 0 20px rgba(34,211,238,.55);
+
+    animation:spin 8s linear infinite;
+}
+
+.profile-zone::after{
+    content:"";
+    position:absolute;
+    inset:-25px;
+    border-radius:50%;
+    border:1px dashed rgba(236,72,153,.35);
+
+    animation:
+        spinReverse
+        15s
+        linear
+        infinite;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+@keyframes spinReverse{
+    to{
+        transform:rotate(-360deg);
+    }
+}
+
+.profile{
+    width:155px;
+    height:155px;
+    padding:5px;
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff7ed,
+            #f6c76a,
+            #ec4899,
+            #a855f7,
+            #22d3ee
+        );
+
+    background-size:400% 400%;
+
+    animation:
+        gradient
+        4s
+        ease
+        infinite;
+
+    box-shadow:
+        0 0 20px #a855f7,
+        0 0 60px rgba(236,72,153,.5),
+        0 0 110px rgba(34,211,238,.22);
+
+    position:relative;
+    z-index:2;
+}
+
+@keyframes gradient{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
+}
+
+.profile img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:50%;
+    border:4px solid #08060f;
+}
+
+/* ================= NAME ================= */
+
+h1{
+    font-size:34px;
+    margin-bottom:8px;
+    letter-spacing:1px;
+    font-weight:900;
+
+    text-shadow:
+        0 0 20px rgba(255,255,255,.15);
+}
+
+h1 span{
+    color:#f0abfc;
+
+    text-shadow:
+        0 0 10px #ec4899,
+        0 0 30px #a855f7,
+        0 0 60px rgba(34,211,238,.45);
+}
+
+.subtitle{
+    color:#aaa0bd;
+    letter-spacing:5px;
+    font-size:12px;
+    margin-bottom:18px;
+}
+
+.line{
+    width:100px;
+    height:2px;
+    margin:0 auto 28px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #22d3ee,
+            #ec4899,
+            #f6c76a,
+            transparent
+        );
+
+    box-shadow:
+        0 0 15px #a855f7;
+
+    animation:
+        linePulse
+        2s
+        infinite
+        alternate;
+}
+
+@keyframes linePulse{
+    to{
+        width:170px;
+
+        box-shadow:
+            0 0 30px #d8b4fe;
+    }
+}
+
+/* ================= BUTTONS ================= */
+
+.buttons{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.btn{
+    width:100%;
+    min-height:76px;
+
+    display:flex;
+    align-items:center;
+
+    position:relative;
+    overflow:hidden;
+
+    padding:11px 17px;
+    border-radius:21px;
+
+    color:white;
+    text-decoration:none;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(124,58,237,.28),
+            rgba(236,72,153,.10) 45%,
+            rgba(2,12,25,.76)
+        );
+
+    border:
+        1px solid rgba(192,132,252,.38);
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:
+        0 0 15px rgba(139,92,246,.15),
+        inset 0 0 25px rgba(192,132,252,.05);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border .25s ease;
+
+    animation:
+        buttonIn
+        .7s
+        ease
+        both;
+}
+
+.btn:nth-child(1){
+    animation-delay:.1s;
+}
+
+.btn:nth-child(2){
+    animation-delay:.2s;
+}
+
+.btn:nth-child(3){
+    animation-delay:.3s;
+}
+
+.btn:nth-child(4){
+    animation-delay:.4s;
+}
+
+.btn:nth-child(5){
+    animation-delay:.5s;
+}
+
+@keyframes buttonIn{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(30px)
+            scale(.94);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+.btn::before{
+    content:"";
+    position:absolute;
+    width:100px;
+    height:250%;
+    left:-150px;
+    top:-70%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.22),
+            transparent
+        );
+
+    transform:rotate(20deg);
+    transition:.8s;
+}
+
+.btn:hover::before{
+    left:130%;
+}
+
+.btn:hover{
+    transform:
+        translateY(-5px)
+        scale(1.015);
+
+    border-color:#67e8f9;
+
+    box-shadow:
+        0 0 25px rgba(34,211,238,.28),
+        0 0 60px rgba(168,85,247,.18),
+        inset 0 0 30px rgba(236,72,153,.08);
+}
+
+/* ================= FONT-INDEPENDENT LOGOS ================= */
+
+.app-logo{
+    width:1em;
+    height:1em;
+    display:block;
+
+    fill:none;
+    stroke:currentColor;
+    stroke-width:1.9;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+
+    overflow:visible;
+}
+
+.icon .app-logo{
+    width:25px;
+    height:25px;
+}
+
+.quick-btn .app-logo,
+.extra-btn .app-logo{
+    width:17px;
+    height:17px;
+}
+
+.social .app-logo{
+    width:24px;
+    height:24px;
+}
+
+.nfc .app-logo{
+    width:22px;
+    height:22px;
+}
+
+.app-logo .solid{
+    fill:currentColor;
+    stroke:none;
+}
+
+/* ================= ICON CONTAINERS ================= */
+
+.icon{
+    width:50px;
+    height:50px;
+
+    flex-shrink:0;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    margin-left:14px;
+
+    color:white;
+
+    transition:.3s;
+}
+
+.btn:hover .icon{
+    transform:
+        scale(1.14)
+        rotate(-7deg);
+}
+
+.phone{
+    background:
+        linear-gradient(
+            135deg,
+            #a855f7,
+            #4f46e5
+        );
+
+    box-shadow:
+        0 0 18px rgba(0,180,255,.5);
+}
+
+.instagram{
+    background:
+        linear-gradient(
+            135deg,
+            #833ab4,
+            #fd1d1d,
+            #fcb045
+        );
+
+    box-shadow:
+        0 0 18px rgba(253,29,29,.3);
+}
+
+.whatsapp{
+    background:
+        linear-gradient(
+            135deg,
+            #34d399,
+            #128c7e
+        );
+
+    box-shadow:
+        0 0 18px rgba(37,211,102,.4);
+}
+
+.location{
+    background:
+        linear-gradient(
+            145deg,
+            #22d3ee,
+            #2563eb
+        );
+
+    box-shadow:
+        0 0 18px rgba(34,211,238,.45);
+}
+
+.card{
+    background:
+        linear-gradient(
+            145deg,
+            #f6c76a,
+            #a855f7
+        );
+
+    box-shadow:
+        0 0 18px rgba(168,85,247,.45);
+}
+
+/* ================= TEXT ================= */
+
+.text{
+    flex:1;
+    text-align:right;
+    min-width:0;
+}
+
+.text strong{
+    display:block;
+    font-size:17px;
+    margin-bottom:5px;
+}
+
+.text small{
+    display:block;
+    direction:ltr;
+    color:#a9a0b8;
+    font-size:11px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.arrow{
+    color:#72ddff;
+    font-size:30px;
+    margin-right:7px;
+
+    transition:.3s;
+}
+
+.btn:hover .arrow{
+    transform:translateX(-6px);
+    color:white;
+
+    text-shadow:
+        0 0 15px #c084fc;
+}
+
+/* ================= QUICK ================= */
+
+.quick{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:9px;
+    margin-top:15px;
+}
+
+.quick-btn{
+    border:
+        1px solid rgba(192,132,252,.28);
+
+    background:
+        rgba(2,18,32,.65);
+
+    color:#9ddfff;
+
+    border-radius:15px;
+
+    min-height:52px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:6px;
+
+    font-size:10px;
+
+    cursor:pointer;
+
+    backdrop-filter:blur(12px);
+
+    transition:.25s;
+}
+
+.quick-btn:hover,
+.quick-btn:active{
+    background:
+        linear-gradient(
+            120deg,
+            rgba(124,58,237,.28),
+            rgba(236,72,153,.16)
+        );
+
+    color:white;
+
+    box-shadow:
+        0 0 20px rgba(168,85,247,.28);
+
+    transform:
+        translateY(-3px);
+}
+
+/* ================= EXTRA ================= */
+
+.extra-actions{
+    margin-top:10px;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:9px;
+}
+
+.extra-btn{
+    min-height:52px;
+
+    border:
+        1px solid rgba(192,132,252,.28);
+
+    background:
+        rgba(2,15,28,.58);
+
+    border-radius:15px;
+
+    color:#a79bbb;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:8px;
+
+    font-size:11px;
+
+    transition:.25s;
+}
+
+.extra-btn:hover{
+    color:white;
+    border-color:#67e8f9;
+
+    box-shadow:
+        0 0 18px rgba(34,211,238,.3);
+
+    transform:
+        translateY(-2px);
+}
+
+/* ================= NFC ================= */
+
+.nfc{
+    margin-top:20px;
+
+    padding:14px;
+
+    border-radius:18px;
+
+    border:
+        1px solid rgba(192,132,252,.28);
+
+    background:
+        rgba(2,15,27,.5);
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:10px;
+
+    color:#9186a9;
+
+    font-size:10px;
+}
+
+.nfc .app-logo{
+    color:#c084fc;
+
+    animation:
+        nfcPulse
+        1.5s
+        infinite;
+}
+
+@keyframes nfcPulse{
+    50%{
+        transform:scale(1.3);
+
+        filter:
+            drop-shadow(
+                0 0 10px
+                #c084fc
+            );
+    }
+}
+
+/* ================= FOLLOW ================= */
+
+.follow{
+    margin-top:35px;
+}
+
+.follow-title{
+    color:#c2b8d1;
+    letter-spacing:2px;
+    margin-bottom:17px;
+    font-size:14px;
+}
+
+.socials{
+    display:flex;
+    justify-content:center;
+    gap:16px;
+}
+
+.social{
+    width:52px;
+    height:52px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+    text-decoration:none;
+
+    border:
+        1px solid #8b5cf6;
+
+    background:
+        rgba(3,18,32,.65);
+
+    backdrop-filter:blur(10px);
+
+    box-shadow:
+        0 0 15px rgba(139,92,246,.25);
+
+    transition:.3s;
+}
+
+.social:hover{
+    transform:
+        translateY(-6px)
+        scale(1.12);
+
+    background:#7c3aed;
+
+    box-shadow:
+        0 0 25px #8b5cf6;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+    margin-top:25px;
+    color:#665d7e;
+    font-size:9px;
+    letter-spacing:2px;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+
+    z-index:100;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    background:
+        rgba(0,3,8,.82);
+
+    backdrop-filter:blur(15px);
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+    max-width:390px;
+
+    max-height:90vh;
+    overflow:auto;
+
+    border:
+        1px solid rgba(0,190,255,.6);
+
+    border-radius:25px;
+
+    padding:25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0,50,90,.8),
+            rgba(2,8,18,.95)
+        );
+
+    box-shadow:
+        0 0 30px rgba(0,170,255,.35),
+        0 0 100px rgba(0,100,255,.15);
+
+    position:relative;
+}
+
+.close{
+    position:absolute;
+
+    top:12px;
+    left:15px;
+
+    width:35px;
+    height:35px;
+
+    border-radius:50%;
+
+    border:
+        1px solid #8b5cf6;
+
+    background:#171126;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:20px;
+}
+
+.modal-title{
+    color:#c084fc;
+    font-size:22px;
+    margin-bottom:20px;
+
+    text-shadow:
+        0 0 15px #8b5cf6;
+}
+
+#qrcode{
+    width:220px;
+    height:220px;
+
+    margin:15px auto;
+
+    padding:10px;
+
+    background:white;
+
+    border-radius:15px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+#qrcode img{
+    max-width:100%;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+
+    bottom:80px;
+    left:50%;
+
+    transform:
+        translateX(-50%)
+        translateY(20px);
+
+    z-index:200;
+
+    padding:12px 20px;
+
+    border-radius:14px;
+
+    background:
+        rgba(2,20,35,.95);
+
+    border:
+        1px solid #d8b4fe;
+
+    color:white;
+
+    font-size:12px;
+
+    box-shadow:
+        0 0 25px rgba(0,170,255,.4);
+
+    backdrop-filter:blur(15px);
+
+    opacity:0;
+
+    transition:.3s;
+
+    pointer-events:none;
+}
+
+.toast.show{
+    opacity:1;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:500px){
+
+    .profile-zone{
+        width:145px;
+        height:145px;
+    }
+
+    .profile{
+        width:130px;
+        height:130px;
+    }
+
+    h1{
+        font-size:29px;
+    }
+
+    .btn{
+        min-height:72px;
+        border-radius:19px;
+    }
+
+    .icon{
+        width:45px;
+        height:45px;
+        flex-basis:45px;
+        margin-left:11px;
+    }
+
+    .text strong{
+        font-size:16px;
+    }
+
+    .text small{
+        font-size:10px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *:before,
+    *:after{
+        animation:none!important;
+        transition:none!important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="universe">
+
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+
+    <div class="grid"></div>
+
+    <div id="stars"></div>
+
+    <div class="meteor meteor1"></div>
+    <div class="meteor meteor2"></div>
+    <div class="meteor meteor3"></div>
+
+</div>
+
+<div class="scanlines"></div>
+
+<main class="container" id="card">
+
+    <div class="top-hud">
+
+        <div class="hud-left">
+            <span class="online-dot"></span>
+            ONLINE
+        </div>
+
+        <div class="hud-right">
+            DIGITAL IDENTITY
+        </div>
+
+    </div>
+
+    <div class="profile-zone">
+
+        <div class="profile">
+
+            <img
+                src="profile.jpg"
+                alt="لوگوی اسپرت ایران ۴۶"
+            >
+
+        </div>
+
+    </div>
+
+    <h1>اسپرت ایران <span>۴۶</span></h1>
+
+    <div class="subtitle">
+        LUXURY • SPORT • AUTO STYLE
+    </div>
+
+    <div class="line"></div>
+
+    <div class="buttons">
+
+        <a class="btn" href="tel:+989114641920">
+
+            <div class="icon phone">
+                <i class="fa-solid fa-phone"></i>
+            </div>
+
+            <div class="text">
+                <strong>شماره تلفن</strong>
+                <small>۰۹۱۱ ۴۶۴ ۱۹۲۰</small>
+            </div>
+
+            <div class="arrow">‹</div>
+
+        </a>
+
+        <a
+            class="btn"
+            href="https://instagram.com/iran46.sport"
+            target="_blank"
+            rel="noopener"
+        >
+
+            <div class="icon instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </div>
+
+            <div class="text">
+                <strong>اینستاگرام</strong>
+                <small>instagram.com/iran46.sport</small>
+            </div>
+
+            <div class="arrow">‹</div>
+
+        </a>
+
+        <a
+            class="btn"
+            href="https://wa.me/989114641920"
+            target="_blank"
+            rel="noopener"
+        >
+
+            <div class="icon whatsapp">
+                <i class="fa-brands fa-whatsapp"></i>
+            </div>
+
+            <div class="text">
+                <strong>واتساپ</strong>
+                <small>پیام مستقیم در واتساپ</small>
+            </div>
+
+            <div class="arrow">‹</div>
+
+        </a>
+
+        <a
+            class="btn"
+            href="https://www.google.com/maps/search/?api=1&query=رشت،%20بلوار%20لاکان،%20ورودی%20مسکن%20مهر"
+            target="_blank"
+            rel="noopener"
+        >
+
+            <div class="icon location">
+                <i class="fa-solid fa-location-dot"></i>
+            </div>
+
+            <div class="text">
+                <strong>آدرس و مسیریابی</strong>
+                <small>رشت، بلوار لاکان، ورودی مسکن مهر</small>
+            </div>
+
+            <div class="arrow">‹</div>
+
+        </a>
+
+    </div>
+
+    <div class="quick">
+
+        <button
+            class="quick-btn"
+            onclick="copyText('+989114641920','شماره تلفن')"
+        >
+            <i class="fa-regular fa-copy"></i>
+            کپی شماره
+        </button>
+
+        <button
+            class="quick-btn"
+            onclick="saveContact()"
+        >
+            <i class="fa-regular fa-address-card"></i>
+            ذخیره مخاطب
+        </button>
+
+        <button
+            class="quick-btn"
+            onclick="sharePage()"
+        >
+            <i class="fa-solid fa-share-nodes"></i>
+            اشتراک
+        </button>
+
+    </div>
+
+    <div class="extra-actions">
+
+        <button
+            class="extra-btn"
+            onclick="openQR()"
+        >
+            <i class="fa-solid fa-qrcode"></i>
+            QR Code
+        </button>
+
+        <button
+            class="extra-btn"
+            onclick="showInstallInfo()"
+        >
+            <i class="fa-solid fa-mobile-screen-button"></i>
+            نصب روی گوشی
+        </button>
+
+    </div>
+
+    <a
+        class="nfc"
+        href="https://omegawebb.github.io/OMEGA/"
+        target="_blank"
+        rel="noopener"
+        style="text-decoration:none;cursor:pointer;"
+    >
+        <span style="font-weight:800;letter-spacing:3px;color:#c084fc;">OMEGA</span>
+        <span>سازنده کارت دیجیتال</span>
+    </a>
+
+    <div class="follow">
+
+        <div class="follow-title">
+            — &nbsp; Follow Sport Iran 46 &nbsp; —
+        </div>
+
+        <div class="socials">
+
+            <a
+                class="social"
+                href="https://instagram.com/iran46.sport"
+                target="_blank"
+                rel="noopener"
+            >
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+
+            <a
+                class="social"
+                href="https://wa.me/989114641920"
+                target="_blank"
+                rel="noopener"
+            >
+                <i class="fa-brands fa-whatsapp"></i>
+            </a>
+
+            <a
+                class="social"
+                href="https://www.google.com/maps/search/?api=1&query=رشت،%20بلوار%20لاکان،%20ورودی%20مسکن%20مهر"
+                target="_blank"
+                rel="noopener"
+            >
+                <i class="fa-solid fa-location-dot"></i>
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        SPORT IRAN 46 • LUXURY & SPORT AUTO © 2026
+    </div>
+
+</main>
+
+<div
+    class="modal"
+    id="secretModal"
+>
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="closeModal()"
+        >
+            ×
+        </button>
+
+        <div class="modal-title">
+
+            <i class="fa-solid fa-qrcode"></i>
+
+            QR CODE
+
+        </div>
+
+        <div class="modal-section">
+
+            <strong>
+                <i class="fa-solid fa-link"></i>
+                MY WEBSITE
+            </strong>
+
+            <div id="qrcode"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
+<script>
+
+/* ================= STARS ================= */
+
+const stars =
+document.getElementById("stars");
+
+for(let i=0;i<40;i++){
+
+    const star =
+        document.createElement("div");
+
+    star.className="star";
+
+    star.style.left =
+        Math.random()*100+"%";
+
+    star.style.animationDuration =
+        (7+Math.random()*12)+"s";
+
+    star.style.animationDelay =
+        (-Math.random()*15)+"s";
+
+    star.style.opacity =
+        Math.random();
+
+    stars.appendChild(star);
+}
+
+
+/* ================= 3D CARD ================= */
+
+const card =
+document.getElementById("card");
+
+document.addEventListener(
+    "mousemove",
+    e=>{
+
+        if(window.innerWidth<700)
+            return;
+
+        const x =
+            (window.innerWidth/2-e.clientX)/100;
+
+        const y =
+            (window.innerHeight/2-e.clientY)/100;
+
+        card.style.transform =
+            `rotateY(${x}deg) rotateX(${y}deg)`;
+
+    }
+);
+
+
+/* ================= MAGNETIC BUTTONS ================= */
+
+document
+.querySelectorAll(".btn")
+.forEach(btn=>{
+
+    btn.addEventListener(
+        "mousemove",
+        e=>{
+
+            if(window.innerWidth<700)
+                return;
+
+            const rect =
+                btn.getBoundingClientRect();
+
+            const x =
+                e.clientX -
+                rect.left -
+                rect.width/2;
+
+            const y =
+                e.clientY -
+                rect.top -
+                rect.height/2;
+
+            btn.style.transform =
+                `translate(
+                    ${x*.025}px,
+                    ${y*.025}px
+                )`;
+
+        }
+    );
+
+    btn.addEventListener(
+        "mouseleave",
+        ()=>{
+            btn.style.transform="";
+        }
+    );
+
+});
+
+
+/* ================= RIPPLE ================= */
+
+document
+.querySelectorAll(
+    ".btn,.quick-btn,.extra-btn,.social"
+)
+.forEach(element=>{
+
+    element.addEventListener(
+        "click",
+        function(e){
+
+            const rect =
+                this.getBoundingClientRect();
+
+            const ripple =
+                document.createElement("span");
+
+            const size =
+                Math.max(
+                    rect.width,
+                    rect.height
+                );
+
+            ripple.style.position="absolute";
+
+            ripple.style.width =
+                size+"px";
+
+            ripple.style.height =
+                size+"px";
+
+            ripple.style.borderRadius="50%";
+
+            ripple.style.background =
+                "rgba(255,255,255,.18)";
+
+            ripple.style.left =
+                (
+                    e.clientX -
+                    rect.left -
+                    size/2
+                )+"px";
+
+            ripple.style.top =
+                (
+                    e.clientY -
+                    rect.top -
+                    size/2
+                )+"px";
+
+            ripple.style.pointerEvents="none";
+
+            ripple.style.transform="scale(0)";
+
+            ripple.style.transition =
+                "transform .6s,opacity .6s";
+
+            this.appendChild(ripple);
+
+            requestAnimationFrame(()=>{
+
+                ripple.style.transform =
+                    "scale(2)";
+
+                ripple.style.opacity="0";
+
+            });
+
+            setTimeout(
+                ()=>ripple.remove(),
+                700
+            );
+
+        }
+    );
+
+});
+
+
+/* ================= COPY ================= */
+
+function copyText(text,label){
+
+    if(navigator.clipboard){
+
+        navigator.clipboard
+        .writeText(text)
+        .then(()=>{
+
+            showToast(
+                label+" کپی شد ✓"
+            );
+
+        })
+        .catch(()=>{
+            showToast(text);
+        });
+
+    }else{
+
+        showToast(text);
+
+    }
+
+}
+
+
+/* ================= SAVE CONTACT ================= */
+
+const IR46_VCARD =
+`BEGIN:VCARD
+VERSION:3.0
+FN:اسپرت ایران ۴۶
+ORG:اسپرت ایران ۴۶
+TEL;TYPE=CELL:+989114641920
+URL:https://instagram.com/iran46.sport
+ADR;TYPE=WORK:;;رشت، بلوار لاکان، ورودی مسکن مهر;;;;ایران
+END:VCARD`;
+
+function saveContact(){
+
+    const blob =
+        new Blob(
+            [IR46_VCARD],
+            {
+                type:
+                    "text/vcard;charset=utf-8"
+            }
+        );
+
+    const url =
+        URL.createObjectURL(blob);
+
+    const a =
+        document.createElement("a");
+
+    a.href=url;
+
+    a.download =
+        "Iran46-Contact.vcf";
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    a.remove();
+
+    setTimeout(
+        ()=>URL.revokeObjectURL(url),
+        1000
+    );
+
+    showToast(
+        "مخاطب اسپرت ایران ۴۶ آماده ذخیره شد ✓"
+    );
+
+}
+
+
+/* ================= SHARE ================= */
+
+async function sharePage(){
+
+    if(navigator.share){
+
+        try{
+
+            await navigator.share({
+
+                title:
+                    "اسپرت ایران ۴۶",
+
+                text:
+                    "Digital Contact Card",
+
+                url:
+                    location.href
+
+            });
+
+        }catch(e){}
+
+    }else{
+
+        copyText(
+            location.href,
+            "لینک صفحه"
+        );
+
+    }
+
+}
+
+
+/* ================= QR ================= */
+
+function openQR(){
+
+    document
+        .getElementById("secretModal")
+        .classList
+        .add("show");
+
+    generateQR();
+
+}
+
+function generateQR(){
+
+    const box =
+        document.getElementById("qrcode");
+
+    box.innerHTML="";
+
+    const img =
+        document.createElement("img");
+
+    img.src =
+        "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data="+
+        encodeURIComponent(location.href);
+
+    img.alt="QR Code";
+
+    box.appendChild(img);
+
+}
+
+
+/* ================= INSTALL ================= */
+
+function showInstallInfo(){
+
+    showToast(
+        "از منوی مرورگر گزینه Add to Home Screen را بزن"
+    );
+
+}
+
+
+/* ================= CLOSE MODAL ================= */
+
+function closeModal(){
+
+    document
+        .getElementById("secretModal")
+        .classList
+        .remove("show");
+
+}
+
+document
+.getElementById("secretModal")
+.addEventListener(
+    "click",
+    e=>{
+
+        if(
+            e.target ===
+            document.getElementById("secretModal")
+        ){
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* ================= VIBRATION ================= */
+
+document
+.querySelectorAll(
+    ".btn,.quick-btn,.extra-btn,.social"
+)
+.forEach(el=>{
+
+    el.addEventListener(
+        "click",
+        ()=>{
+            if(navigator.vibrate){
+                navigator.vibrate(12);
+            }
+        }
+    );
+
+});
+
+
+/* =========================================================
+   FONT-INDEPENDENT APP LOGOS
+   همه لوگوها به صورت SVG داخلی ساخته می‌شوند.
+   بنابراین وابسته به Font Awesome یا هیچ فونت دیگری نیستند.
+   ========================================================= */
+
+(()=>{
+    
+    const ICONS = {
+
+        phone: `
+            <path d="
+                M6.6 2.8
+                l3.1-.7
+                1.5 4.2
+                -2 1.6
+                a16.8 16.8 0 0 0
+                6.9 6.9
+                l1.6-2
+                4.2 1.5
+                -.7 3.1
+                c-.2.9-1 1.6-1.9 1.7
+                C10.9 20.2 3.8 13.1 4.9 4.7
+                c.1-.9.8-1.7 1.7-1.9Z
+            "/>
+        `,
+
+        instagram: `
+            <rect
+                x="3"
+                y="3"
+                width="18"
+                height="18"
+                rx="5"
+            />
+
+            <circle
+                cx="12"
+                cy="12"
+                r="4.2"
+            />
+
+            <circle
+                class="solid"
+                cx="17.5"
+                cy="6.8"
+                r="1.1"
+            />
+        `,
+
+     
+whatsapp:
+'<path d="M20.52 3.48A11.95 11.95 0 0 0 12.03 0C5.43 0 .06 5.36 .06 11.96c0 2.11.55 4.17 1.6 5.98L0 24l6.2-1.63a11.95 11.95 0 0 0 5.83 1.49h.01c6.6 0 11.96-5.37 11.96-11.96 0-3.2-1.24-6.2-3.48-8.42ZM12.04 21.7h-.01a9.7 9.7 0 0 1-4.94-1.35l-.35-.21-3.68.97.98-3.59-.23-.37a9.7 9.7 0 0 1-1.49-5.19c0-5.36 4.36-9.72 9.73-9.72a9.65 9.65 0 0 1 6.88 2.85 9.68 9.68 0 0 1 2.85 6.9c0 5.35-4.36 9.71-9.72 9.71Zm5.33-7.28c-.29-.15-1.71-.84-1.98-.94-.27-.1-.46-.15-.65.15-.19.29-.75.94-.92 1.13-.17.2-.34.22-.63.07-.29-.15-1.23-.45-2.34-1.44-.87-.78-1.46-1.73-1.63-2.02-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.2-.29.29-.49.1-.2.05-.37-.02-.52-.07-.15-.65-1.56-.9-2.14-.24-.56-.48-.49-.65-.5h-.55c-.2 0-.51.07-.78.37-.27.29-1.02.99-1.02 2.42s1.05 2.81 1.2 3c.15.2 2.06 3.14 4.99 4.4.7.3 1.25.48 1.67.61.7.22 1.34.19 1.84.11.56-.08 1.71-.7 1.95-1.38.24-.68.24-1.27.17-1.39-.07-.12-.27-.19-.56-.34Z"/>',
+        location: `
+            <path d="
+                M12 2.5
+                a7 7 0 0 0-7 7
+                c0 5.2 7 12 7 12
+                s7-6.8 7-12
+                a7 7 0 0 0-7-7Z
+            "/>
+
+            <circle
+                cx="12"
+                cy="9.5"
+                r="2.5"
+            />
+        `,
+
+        card: `
+            <rect
+                x="3"
+                y="4"
+                width="18"
+                height="16"
+                rx="3"
+            />
+
+            <circle
+                cx="9"
+                cy="11"
+                r="2.2"
+            />
+
+            <path d="
+                M13 10h5
+                M13 13h5
+                M6 16h12
+            "/>
+        `,
+
+        copy: `
+            <rect
+                x="8"
+                y="8"
+                width="12"
+                height="12"
+                rx="2"
+            />
+
+            <path d="
+                M16 8V6
+                a2 2 0 0 0-2-2
+                H6
+                a2 2 0 0 0-2 2
+                v8
+                a2 2 0 0 0 2 2
+                h2
+            "/>
+        `,
+
+        share: `
+            <circle
+                cx="18"
+                cy="5"
+                r="2.5"
+            />
+
+            <circle
+                cx="6"
+                cy="12"
+                r="2.5"
+            />
+
+            <circle
+                cx="18"
+                cy="19"
+                r="2.5"
+            />
+
+            <path d="
+                m8.2 10.8
+                7.5-4.4
+
+                M8.2 13.2
+                l7.5 4.4
+            "/>
+        `,
+
+        qr: `
+            <path d="
+                M4 4h6v6H4z
+                M14 4h6v6h-6z
+                M4 14h6v6H4z
+                M14 14h2v2h-2z
+                M18 14h2v2h-2z
+                M14 18h2v2h-2z
+                M18 18h2v2h-2z
+            "/>
+        `,
+
+        mobile: `
+            <rect
+                x="6"
+                y="2.5"
+                width="12"
+                height="19"
+                rx="2.5"
+            />
+
+            <path d="
+                M10 5h4
+                M11 18.5h2
+            "/>
+        `,
+
+        nfc: `
+            <path d="
+                M8 8
+                a6 6 0 0 1 0 8
+
+                M5 5
+                a10 10 0 0 1 0 14
+
+                M16 8
+                a6 6 0 0 0 0 8
+
+                M19 5
+                a10 10 0 0 0 0 14
+            "/>
+
+            <circle
+                cx="12"
+                cy="12"
+                r="1.2"
+            />
+        `
+    };
+
+
+    const MAP = {
+
+        "fa-phone":
+            "phone",
+
+        "fa-instagram":
+            "instagram",
+
+        "fa-whatsapp":
+            "whatsapp",
+
+        "fa-location-dot":
+            "location",
+
+        "fa-address-card":
+            "card",
+
+        "fa-copy":
+            "copy",
+
+        "fa-share-nodes":
+            "share",
+
+        "fa-qrcode":
+            "qr",
+
+        "fa-mobile-screen-button":
+            "mobile",
+
+        "fa-wifi":
+            "nfc"
+
+    };
+
+
+    document
+        .querySelectorAll("i[class]")
+        .forEach(element=>{
+
+            const key =
+                [...element.classList]
+                .map(className=>MAP[className])
+                .find(Boolean);
+
+            if(!key)
+                return;
+
+
+            const svg =
+                document.createElementNS(
+                    "http://www.w3.org/2000/svg",
+                    "svg"
+                );
+
+
+            svg.setAttribute(
+                "viewBox",
+                "0 0 24 24"
+            );
+
+
+            svg.setAttribute(
+                "class",
+                "app-logo"
+            );
+
+
+            svg.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+
+            svg.innerHTML =
+                ICONS[key];
+
+
+            element.replaceWith(svg);
+
+        });
+
+})();
+
+
+/* ================= TOAST ================= */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.innerText=message;
+
+    toast.classList.add("show");
+
+    clearTimeout(
+        window.toastTimer
+    );
+
+    window.toastTimer =
+        setTimeout(
+            ()=>{
+                toast.classList
+                    .remove("show");
+            },
+            2200
+        );
+
+}
+
+</script>
+
+</body>
+</html>
